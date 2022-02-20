@@ -1,0 +1,49 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "graves",
+		"description": "NOT MADE BY SLIGHTLY2. made by Hatchibombotar, used in Misery Mode.",
+		"uuid": "6181e449-d2b7-4482-8740-544e645bdd5f",
+		"version": [
+			1,
+			0,
+			4
+		],
+		"min_engine_version": [
+			1,
+			13,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "resources",
+			"uuid": "0af8e8cc-ea42-469b-bbf7-7b5ee2cef6b4",
+			"version": [
+				1,
+				0,
+				4
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "383654fa-10e0-4daa-abce-495fe9a25a57",
+			"version": [
+				123,
+				456,
+				789
+			]
+		}
+	],
+	"metadata": {
+		"generated_with": {
+			"bridge": [
+				"2.2.4"
+			],
+			"dash": [
+				"0.7.1"
+			]
+		}
+	}
+}
