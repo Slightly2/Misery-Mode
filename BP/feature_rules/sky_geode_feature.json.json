@@ -1,0 +1,58 @@
+// maybe i'll properly implement this later
+{
+  "format_version": "1.13.0",
+  "minecraft:feature_rules": {
+    "description": {
+      "places_feature": "bridge:sky_geode",
+      "identifier": "bridge:sky_geode_feature"
+    },
+    "conditions": {
+      "minecraft:biome_filter": [
+        {
+          "any_of": [
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "overworld_generation"
+            }
+          ]
+        }
+      ],
+      "placement_pass": "after_sky_pass"
+    },
+    "distribution": {
+      "x": {
+        "extent": [
+          160,
+          240
+        ],
+        "distribution": "uniform"
+      },
+      "y": {
+        "extent": [
+          10,
+          42
+        ],
+        "distribution": "uniform"
+      },
+      "z": {
+        "extent": [
+          160,
+          240
+        ],
+        "distribution": "uniform"
+      },
+      "iterations": 1,
+      "coordinate_eval_order": "zxy",
+      "scatter_chance": {
+        "numerator": 4,
+        "denominator": 100
+      }
+    }
+  }
+}

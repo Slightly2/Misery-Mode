@@ -1,0 +1,52 @@
+{
+	"format_version": 2,
+	"header": {
+		"description": "pain made kind of fair(?) MADE BY SLIGHTLY2",
+		"name": "Misery Mode",
+		"uuid": "383654fa-10e0-4daa-abce-495fe9a25a57",
+		"version": [
+			1,
+			0,
+			0
+		],
+		"min_engine_version": [
+			1,
+			16,
+			0
+		]
+	},
+	"modules": [
+		{
+			"description": "pain made kind of fair(?) MADE BY SLIGHTLY2",
+			"type": "data",
+			"uuid": "876dc7e3-22a8-4911-9976-fc33b8731467",
+			"version": [
+				0,
+				0,
+				1
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "6181e449-d2b7-4482-8740-544e645bdd5f",
+			"version": [
+				1,
+				0,
+				4
+			]
+		}
+	],
+	"metadata": {
+		"generated_with": {
+			"bridge": [
+				"2.2.3",
+				"2.2.4"
+			],
+			"dash": [
+				"0.7.0",
+				"0.7.1"
+			]
+		}
+	}
+}

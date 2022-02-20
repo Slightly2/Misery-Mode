@@ -1,0 +1,28 @@
+// Credit to Hatchibombotar. I took this from their addon, so go check it out.
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+     "controller.animation.death": {
+      "initial_state": "alive",
+      "states": {
+       "alive": {
+        "transitions": [
+         {
+          "dead": "!query.is_alive"
+         }
+        ],
+        "on_exit": [
+         "/summon bridge:grave"
+        ]
+       },
+       "dead": {
+        "transitions": [
+         {
+          "alive": "query.is_alive"
+         }
+        ]
+       }
+      }
+     }
+    }
+   }

@@ -1,0 +1,92 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:feature_rules": {
+    "description": {
+      "places_feature": "e:hell_geode",
+      "identifier": "e:hell_geode_rules"
+    },
+    "conditions": {
+      "minecraft:biome_filter": [
+        {
+          "any_of": [
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "hell"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "warped_forest"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "soul_sand_valley"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "warped_forest"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "basalt_deltas"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "nether"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "nether_wastes"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "netherwart_forest"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "==",
+              "value": "soulsand_valley"
+            }
+          ]
+        }
+      ],
+      "placement_pass": "underground_pass"
+    },
+    "distribution": {
+      "x": {
+        "extent": [
+          0,
+          16
+        ],
+        "distribution": "uniform"
+      },
+      "y": {
+        "extent": [
+          3,
+          32
+        ],
+        "distribution": "uniform"
+      },
+      "z": {
+        "extent": [
+          0,
+          16
+        ],
+        "distribution": "uniform"
+      },
+      "iterations": 6,
+      "coordinate_eval_order": "zyx",
+      "scatter_chance": {
+        "numerator": 4,
+        "denominator": 100
+      }
+    }
+  }
+}

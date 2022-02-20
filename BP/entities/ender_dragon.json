@@ -1,0 +1,297 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "minecraft:ender_dragon",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"dragon_sitting": {
+				"minecraft:behavior.dragonlanding": {
+					"priority": 1
+				},
+				"minecraft:behavior.dragonflaming": {
+					"priority": 1
+				},
+				"minecraft:behavior.dragonscanning": {
+					"priority": 2
+				}
+			},
+			"dragon_flying": {
+				"minecraft:behavior.dragontakeoff": {
+					"priority": 0
+				},
+				"minecraft:behavior.dragonchargeplayer": {
+					"priority": 1
+				},
+				"minecraft:behavior.dragonstrafeplayer": {
+					"priority": 2
+				},
+				"minecraft:behavior.dragonholdingpattern": {
+					"priority": 3
+				},
+				"minecraft:shooter": {
+					"def": "minecraft:dragon_fireball"
+				}
+			},
+			"dragon_death": {
+				"minecraft:behavior.dragondeath": {
+					"priority": 0
+				}
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": [
+					"dragon",
+					"mob",
+					"monster"
+				]
+			},
+			"minecraft:health": {
+				"value": 400,
+				"max": 400
+			},
+			"minecraft:break_blocks": {
+				"breakable_blocks": [
+					"obsidian",
+					"end_stone"
+				]
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+				"priority": 1,
+				"within_radius": 500,
+				"entity_types": [
+					{
+						"filters": {
+							"any_of": [
+								{
+									"test": "is_family",
+									"subject": "other",
+									"value": "player"
+								}
+							]
+						},
+						"max_dist": 500,
+						"must_see": false
+					}
+				],
+				"must_see": false,
+				"scan_interval": 20,
+				"target_search_height": 80
+			},
+			"minecraft:behavior.swoop_attack": {
+				"priority": 2,
+				"delay_range": [
+					10,
+					20
+				]
+			},
+			"minecraft:boss": {
+				"should_darken_sky": false,
+				"hud_range": 500
+			},
+			"minecraft:collision_box": {
+				"height": 4,
+				"width": 13
+			},
+			"minecraft:teleport": {
+				"min_random_teleport_time": 30,
+				"max_random_teleport_time": 120,
+				"random_teleports": true,
+				"target_distance": 500,
+				"target_teleport_chance": 0.5
+			},
+			"minecraft:movement": {
+				"value": 0.3
+			},
+			"minecraft:fire_immune": true,
+			"minecraft:knockback_resistance": {
+				"value": 100,
+				"max": 100
+			},
+			"minecraft:attack": {
+				"damage": 24
+			},
+			"minecraft:damage_sensor": {
+				"triggers": {
+					"cause": "fall",
+					"deals_damage": false
+				}
+			},
+			"minecraft:on_start_landing": {
+				"event": "minecraft:start_land",
+				"target": "self"
+			},
+			"minecraft:on_start_takeoff": {
+				"event": "minecraft:start_fly",
+				"target": "self"
+			},
+			"minecraft:on_death": {
+				"event": "on:death",
+				"target": "self"
+			},
+			"minecraft:persistent": {},
+			"minecraft:physics": {
+				"has_gravity": false
+			},
+			"minecraft:experience_reward": {
+				"on_death": "query.last_hit_by_player ? 500 : 0"
+			},
+			"minecraft:underwater_movement": {
+				"value": 0.02
+			},
+			"minecraft:scale": {
+				"value": 1
+			},
+			"minecraft:timer": {
+				"looping": true,
+				"time": 60,
+				"time_down_event": {
+					"event": "bridge:summon_crystal",
+					"target": "self"
+				}
+			},
+			"minecraft:behavior.ranged_attack": {
+				"priority": 1,
+				"attack_radius": 300,
+				"charge_shoot_trigger": 2,
+				"charge_charged_trigger": 1,
+				"burst_shots": 3,
+				"burst_interval": 0.3
+			},
+			"minecraft:on_hurt": {
+				"event": "on:hurt",
+				"target": "self"
+			},
+			"minecraft:on_hurt_by_player": {
+				"event": "on:hurt_by_player",
+				"target": "self"
+			},
+			"minecraft:on_ignite": {
+				"event": "on:ignite",
+				"target": "self"
+			},
+			"minecraft:on_target_acquired": {
+				"event": "on:target_acquired",
+				"target": "self"
+			},
+			"minecraft:on_target_escape": {
+				"event": "on:target_escape",
+				"target": "self"
+			},
+			"minecraft:on_wake_with_owner": {
+				"event": "on:wake_with_owner",
+				"target": "self"
+			}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"remove": {},
+				"add": {
+					"component_groups": [
+						"dragon_flying"
+					]
+				}
+			},
+			"minecraft:start_land": {
+				"remove": {
+					"component_groups": [
+						"dragon_flying"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"dragon_sitting"
+					]
+				}
+			},
+			"minecraft:start_fly": {
+				"remove": {
+					"component_groups": [
+						"dragon_sitting"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"dragon_flying"
+					]
+				}
+			},
+			"bridge:summon_crystal": {
+				"run_command": {
+					"command": [
+						"execute @e[type=ender_dragon] ~~~ summon ender_crystal"
+					]
+				}
+			},
+			"minecraft:start_death": {
+				"remove": {
+					"component_groups": [
+						"dragon_sitting",
+						"dragon_flying"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"dragon_death"
+					]
+				},
+				"run_command": {
+					"command": [
+						"execute @e ~ ~ ~ summon minecraft:lightning_bolt ~~~",
+						"execute @e ~ ~10 ~ summon minecraft:tnt ~~~"
+					]
+				}
+			},
+			"on:death": {
+				"run_command": {
+					"command": [
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~10 ~ summon minecraft:tnt ~~~",
+						"execute @e[type=!minecraft:tnt] ~ ~30 ~ summon ender_crystal ~~~",
+						"execute @e[type=ender_dragon] ~~~ kill @s"
+					]
+				}
+			},
+			"on:hurt": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:hurt_by_player": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:ignite": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:target_acquired": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:target_escape": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:wake_with_owner": {
+				"run_command": {
+					"command": []
+				}
+			}
+		}
+	}
+}

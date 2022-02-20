@@ -1,0 +1,16 @@
+// Credit to Hatchibombotar. I took this from their addon, so go check it out.
+{
+    "format_version":"1.10.0",
+    "animations":{
+       "animation.collect":{
+          "timeline":{
+             "0.04":[
+                "/tp @e[type=item,r=7.5] ~ ~ ~",
+                "/function lineup"
+             ]
+          },
+          "animation_length":0.05,
+          "loop":false
+       }
+    }
+ }

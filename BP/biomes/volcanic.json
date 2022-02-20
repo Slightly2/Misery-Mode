@@ -1,0 +1,82 @@
+// Why on god's green earth doesn't this work? If someone knows, please tell me
+{
+    "format_version": "1.13.0",
+    "minecraft:biome": {
+        "description": {
+            "identifier": "volcanic"
+        },
+        "components": {
+            "minecraft:climate": {
+                "downfall": 0.0,
+                "snow_accumulation": [
+                    0.0,
+                    0.23
+                ],
+                "temperature": 2.0,
+                "white_ash": 2
+            },
+            "minecraft:overworld_height": {
+                "noise_type": "lowlands"
+            },
+            "monster": {},
+            "basalt_deltas": {},
+            "overworld": {},
+            "spawn_ghast": {},
+            "spawn_many_magma_cubes": {},
+            "spawn_zombified_piglin": {},
+            "volcanic": {},
+            "minecraft:surface_parameters": {
+                "top_material": "minecraft:basalt",
+                "mid_material": "minecraft:blackstone",
+                "foundation_material": "minecraft:stone",
+                "sea_floor_material": "minecraft:gravel",
+                "sea_material": "minecraft:lava",
+                "sea_floor_depth": 7
+            },
+            "minecraft:overworld_generation_rules": {
+                "generate_for_climates": [
+                    [
+                        "cold",
+                        10
+                    ],
+                    [
+                        "warm",
+                        10
+                    ],
+                    [
+                        "frozen",
+                        10
+                    ],
+                    [
+                        "medium",
+                        3
+                    ]
+                ]
+            },
+            "minecraft:surface_material_adjustments": {
+                "adjustments": [
+                    {
+                        "materials": {
+                            "top_material": "minecraft:magma"
+                        },
+                        "noise_range": [
+                            0.6,
+                            1
+                        ],
+                        "noise_frequency_scale": 0.1
+                    },
+                    {
+                        "materials": {
+                            "top_material": "minecraft:stone"
+                        },
+                        "noise_range": [
+                            -0.1,
+                            0.1
+                        ],
+                        "noise_frequency_scale": 0.5
+                    }
+                ]
+            }
+        }
+    }
+}

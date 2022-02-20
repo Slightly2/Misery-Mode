@@ -1,0 +1,173 @@
+{
+    "format_version": "1.16.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "minecraft:elder_guardian",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false
+        },
+        "components": {
+            "minecraft:is_hidden_when_invisible": {},
+            "minecraft:experience_reward": {
+                "on_death": "query.last_hit_by_player ? 175 : 0"
+            },
+            "minecraft:collision_box": {
+                "width": 1.99,
+                "height": 1.99
+            },
+            "minecraft:nameable": {},
+            "minecraft:loot": {
+                "table": "loot_tables/entities/elder_guardian.json"
+            },
+            "minecraft:navigation.generic": {
+                "is_amphibious": true,
+                "can_path_over_water": false,
+                "can_swim": true,
+                "can_walk": false,
+                "can_breach": true
+            },
+            "minecraft:movement.sway": {},
+            "minecraft:jump.static": {},
+            "minecraft:health": {
+                "value": 200,
+                "max": 200
+            },
+            "minecraft:boss": {
+                "name": "Elder Guardian",
+                "hud_range": 30
+            },
+            "minecraft:hurt_on_condition": {
+                "damage_conditions": [
+                    {
+                        "filters": {
+                            "test": "in_lava",
+                            "subject": "self",
+                            "operator": "==",
+                            "value": true
+                        },
+                        "cause": "lava",
+                        "damage_per_tick": 8
+                    }
+                ]
+            },
+            "minecraft:movement": {
+                "value": 0.3
+            },
+            "minecraft:underwater_movement": {
+                "value": 0.3
+            },
+            "minecraft:attack": {
+                "damage": 10
+            },
+            "minecraft:combat_regeneration": {
+				"regeneration_duration": 7,
+				"apply_to_self": true,
+				"apply_to_family": true
+			},
+            "minecraft:follow_range": {
+                "value": 32,
+                "max": 42
+            },
+            "minecraft:breathable": {
+                "breathes_water": true
+            },
+            "minecraft:home": {
+                "restriction_radius": 32
+            },
+            "minecraft:behavior.nearest_attackable_target": {
+                "priority": 1,
+                "entity_types": [
+                    {
+                        "filters": {
+                            "any_of": [
+                                {
+                                    "test": "is_family",
+                                    "subject": "other",
+                                    "value": "player"
+                                },
+                                {
+                                    "test": "is_family",
+                                    "subject": "other",
+                                    "value": "squid"
+                                }
+                            ]
+                        },
+                        "max_dist": 32
+                    }
+                ],
+                "attack_interval_min": 1.0,
+                "must_see": false
+            },
+            "minecraft:behavior.guardian_attack": {
+                "priority": 4
+            },
+            "minecraft:behavior.move_towards_home_restriction": {
+                "priority": 5,
+                "speed_multiplier": 1.0
+            },
+            "minecraft:behavior.random_swim": {
+                "priority": 7,
+                "speed_multiplier": 0.5,
+                "avoid_surface": false
+            },
+            "minecraft:behavior.look_at_player": {
+                "priority": 8,
+                "look_distance": 12.0,
+                "probability": 0.01
+            },
+            "minecraft:behavior.random_look_around": {
+                "priority": 9
+            },
+            "minecraft:shooter": {
+                "def": "minecraft:thrown_trident"
+            },
+            "minecraft:timer": {
+                "looping": true,
+                "time": 20,
+                "time_down_event": {
+                    "event": "bridge:water_blessing",
+                    "target": "self"
+                }
+            },
+            "minecraft:behavior.ranged_attack": {
+                "attack_interval_min": 1,
+                "attack_interval_max": 5,
+                "charge_charged_trigger": 20,
+                "charge_shoot_trigger": 120,
+                "burst_shots": 10,
+                "burst_interval": 0.2,
+                "priority": 1,
+                "attack_radius": 32
+            },
+            "minecraft:type_family": {
+                "family": [
+                    "guardian_elder",
+                    "monster",
+                    "mob"
+                ]
+            },
+            "minecraft:physics": {},
+            "minecraft:pushable": {
+                "is_pushable": true,
+                "is_pushable_by_piston": true
+            },
+            "minecraft:conditional_bandwidth_optimization": {}
+        },
+        "events": {
+            "bridge:water_blessing": {
+                "run_command": {
+                    "command": [
+                        "effect @e[type=elder_guardian,r=3] regeneration 4 4 false",
+                        "effect @e[type=elder_guardian,r=3] invisibility 4 0 true",
+                        "effect @e[type=elder_guardian,r=3] speed 4 4 true",
+                        "effect @e[type=elder_guardian,r=3] resistance 4 3 true",
+                        "summon minecraft:guardian",
+                        "summon minecraft:guardian",
+                        "summon minecraft:guardian"
+                    ]
+                }
+            }
+        }
+    }
+}

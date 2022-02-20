@@ -1,0 +1,239 @@
+{
+	"format_version": "1.8.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "minecraft:blaze",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"components": {
+			"minecraft:loot": {
+				"table": "loot_tables/entities/blaze.json"
+			},
+			"minecraft:collision_box": {
+				"height": 1.8,
+				"width": 0.5
+			},
+			"minecraft:attack": {
+				"damage": 6
+			},
+			"minecraft:fall_damage": {
+				"value": 0.0
+			},
+			"minecraft:movement": {
+				"value": 0.23
+			},
+			"minecraft:navigation.walk": {
+				"can_path_over_water": true
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			"minecraft:can_fly": {},
+			"minecraft:health": {
+				"value": 20,
+				"max": 20
+			},
+			"minecraft:combat_regeneration": {
+				"regeneration_duration": 7,
+				"apply_to_self": true,
+				"apply_to_family": false
+			},
+			"minecraft:follow_range": {
+				"value": 48,
+				"max": 48
+			},
+			"minecraft:hurt_when_wet": {
+				"value": true
+			},
+			"minecraft:fire_immune": true,
+			"minecraft:nameable": {
+				"always_show": false,
+				"allow_name_tag_renaming": false
+			},
+			"minecraft:behavior.float": {
+				"priority": 0
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 3
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+				"priority": 2,
+				"entity_types": [{
+					"filters": {
+						"any_of": [{
+								"test": "is_family",
+								"subject": "other",
+								"value": "player"
+							},
+							{
+								"test": "is_family",
+								"subject": "other",
+								"value": "snowgolem"
+							},
+							{
+								"test": "is_family",
+								"subject": "other",
+								"value": "irongolem"
+							}
+						]
+					},
+					"max_dist": 20,
+					"must_see": false
+				}],
+				"must_see": false,
+				"within_radius": 0.0
+			},
+			"minecraft:shooter": {
+				"def": "minecraft:small_fireball"
+			},
+			"minecraft:behavior.ranged_attack": {
+				"priority": 2,
+				"attack_interval_min": 1,
+				"attack_interval_max": 5,
+				"charge_charged_trigger": 0.0,
+				"charge_shoot_trigger": 4.0,
+				"attack_radius": 16,
+				"burst_shots": 12,
+				"burst_interval": 0.1
+			},
+			"minecraft:behavior.random_stroll": {
+				"priority": 5,
+				"speed_multiplier": 1.0
+			},
+			"minecraft:behavior.random_look_around": {
+				"priority": 6
+			},
+			"minecraft:type_family": {
+				"family": [
+					"blaze",
+					"monster"
+				]
+			},
+			"minecraft:physics": {},
+			"minecraft:experience_reward": {
+				"on_death": "query.last_hit_by_player ? 50 : 0"
+			},
+			"minecraft:underwater_movement": {
+				"value": 0.02
+			},
+			"minecraft:flying_speed": {
+				"value": 0.02
+			},
+			"minecraft:scale": {
+				"value": 1
+			},
+			"minecraft:behavior.owner_hurt_by_target": {
+				"priority": 1
+			},
+			"minecraft:behavior.owner_hurt_target": {
+				"priority": 2
+			},
+			"minecraft:behavior.float_wander": {
+				"random_reselect": true,
+				"priority": 2
+			},
+			"minecraft:movement.generic": {},
+			"minecraft:navigation.fly": {},
+			"minecraft:behavior.circle_around_anchor": {
+				"priority": 3,
+				"radius_range": [
+					5.0,
+					15.0
+				],
+				"radius_change_chance": 250,
+				"height_above_target_range": [
+					20.0,
+					40.0
+				],
+				"height_offset_range": [
+					-4.0,
+					5.0
+				],
+				"height_change_chance": 350,
+				"goal_radius": 1.0
+			},
+			"minecraft:movement.glide": {
+				"start_speed": 0.1,
+				"speed_when_turning": 0.2
+			},
+			"minecraft:on_death": {
+				"event": "on:death",
+				"target": "self"
+			},
+			"minecraft:on_hurt": {
+				"event": "on:hurt",
+				"target": "self"
+			},
+			"minecraft:on_hurt_by_player": {
+				"event": "on:hurt_by_player",
+				"target": "self"
+			},
+			"minecraft:on_ignite": {
+				"event": "on:ignite",
+				"target": "self"
+			},
+			"minecraft:on_target_acquired": {
+				"event": "on:target_acquired",
+				"target": "self"
+			},
+			"minecraft:on_target_escape": {
+				"event": "on:target_escape",
+				"target": "self"
+			},
+			"minecraft:on_wake_with_owner": {
+				"event": "on:wake_with_owner",
+				"target": "self"
+			},
+			"minecraft:trail": {
+				"block_type": "minecraft:fire",
+				"spawn_offset": [
+					0,
+					0,
+					0
+				]
+			}
+		},
+		"events": {
+			"on:death": {
+				"run_command": {
+					"command": [
+						"summon minecraft:fireball"
+					]
+				}
+			},
+			"on:hurt": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:hurt_by_player": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:ignite": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:target_acquired": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:target_escape": {
+				"run_command": {
+					"command": []
+				}
+			},
+			"on:wake_with_owner": {
+				"run_command": {
+					"command": []
+				}
+			}
+		},
+		"component_groups": null
+	}
+}
